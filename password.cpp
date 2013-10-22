@@ -1,21 +1,33 @@
-// password.cpp
-//
-// Distributed under the Boost Software License, Version 1.0. (See
-// accompanying file LICENSE_1_0.txt or copy at
-// http://www.boost.org/LICENSE_1_0.txt)
+/*!
+ * \file password.cpp
+ *
+ * \copyright Copyright 2013 (C) Morpheus Being
+ * 
+ * \author Morpheus Being
+ * 
+ * Distributed under the Boost Software License, Version 1.0. (See
+ * accompanying file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
+*/
 
 // compile as
 // g++ -o password password.cpp -lboost_random
 
-#include <iostream>
-#include <string>
-#include <vector>
+#include <iostream>                                        // provide access to cout, cin, cerr
+#include <string>                                          // provide access to string
+#include <vector>                                          // provide vector
 
 #include <boost/random/random_device.hpp>
 #include <boost/nondet_random.hpp>
 #include <boost/random/variate_generator.hpp>
 #include <boost/random/uniform_int_distribution.hpp>
 
+/**
+ * @brief Create a pronouncable password
+ *
+ * 
+ * @param number - the number of passwords required to create
+ */
 void password_pronounce(int number)
 {
     // We first define the characters that we're going
@@ -25,10 +37,12 @@ void password_pronounce(int number)
 	std::string vowels("aeiouAEIOU");
 	std::string numbers("1234567890");
 	std::string symbols("!@#$%^&*()`~-_=+[{]}\\|;:'\",<.>/? ");
+
     // We use __random_device as a source of entropy, since we want
     //     passwords that are not predictable.
     
     boost::random::random_device rng;
+    
     // Now develop uniform distribution
     boost::random::uniform_int_distribution<> chars_dist(0, chars.size() - 1);
     boost::random::uniform_int_distribution<> vowels_dist(0, vowels.size() - 1);
@@ -55,6 +69,12 @@ void password_pronounce(int number)
     }
 }
 
+/**
+ * @brief Create long passwords for system use - not for remembering
+ *
+ * @param num - the number of passwords to create
+ * @param len - the number of characters in each password
+ */
 void password_long(int& num, int len = 20)
 {
    std::string chars(
@@ -80,6 +100,13 @@ void password_long(int& num, int len = 20)
     }
 }
 
+/**
+ * @brief Show how to use the program.
+ * 
+ * This can be called or shown on error on command line.
+ *
+ * @param name - the name of the calling program
+ */
 static void show_usage(std::string name) {
 			std::cerr << "usage: " << name << "  [options] " << std::endl;
 			std::cerr << " l - create [n] long password of [n] (20 is default) characters for system useage." << std::endl;
@@ -95,7 +122,8 @@ int main(int argc, char *argv[])
    int length = 20;
    int number = 1;
    
-   if (argc < 2) {
+   if (argc < 2) 
+   {
       show_usage(argv[0]);
       return 1;
    }
@@ -140,6 +168,7 @@ int main(int argc, char *argv[])
 	   }
 	   else
 	   {
+		   // we have a problem
 		   std::cerr << "Houston, we have a problem." << std::endl;
 		   std::cerr << "Why don't you try again with -h option. " << std::endl;
 	   }
