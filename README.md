@@ -1,3 +1,7 @@
+Information
+===========
+Create pronounable and hence rememberable passwords to a set pattern or create long passwords for secure computer systems.
+
 History
 =======
 In another life at another time, I used to have to give out passwords to students, who would forget them! 
@@ -16,8 +20,7 @@ The compile instructions are in the source code, but it is simple:
 
 It will create:
 * pronouncable passwords of an internal pattern from 1 to a number specified on the command line.
-* long passwords from 1 to number specified of a specified length (20 characters is the default). These are really good for computer
-systems that need secure passwords that are not accessed very often.
+* long passwords from 1 to number specified of a specified length (20 characters is the default). These are really good for computer systems that need secure passwords that are not accessed very often.
 
 I learnt a lot about processing commandline arguments in c++.
 
