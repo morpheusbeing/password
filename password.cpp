@@ -49,11 +49,9 @@ void password_pronounce(int number)
     boost::random::uniform_int_distribution<> symbols_dist(0, symbols.size() - 1);
     boost::random::uniform_int_distribution<> numbers_dist(0, numbers.size() - 1);
     
-    for (int i = 0; i < number; ++i) 
-    {
+    for (int i = 0; i < number; ++i) {
 	    // Display group of char/vowel/char to get pronouncable password
-    	for (int j = 0; j < 3; ++j) 
-    	{
+    	for (int j = 0; j < 3; ++j) {
 			std::cout << chars[chars_dist(rng)];
 			std::cout << vowels[vowels_dist(rng)];
 			std::cout << chars[chars_dist(rng)];
@@ -61,8 +59,7 @@ void password_pronounce(int number)
     	// now add a symbol
 		std::cout << symbols[symbols_dist(rng)];
 		// now add 3 numbers to end
-		for (int i = 0; i < 3; ++i) 
-		{
+		for (int i = 0; i < 3; ++i) {
 			std::cout << numbers[numbers_dist(rng)];
 		}
     	std::cout << std::endl;
@@ -89,11 +86,9 @@ void password_long(int& num, int len = 20)
         gen(rng, boost::random::uniform_int_distribution<>(0, chars.size()));
     
     // the number asked for
-    for (int i = 0; i < num; ++i) 
-    {
+    for (int i = 0; i < num; ++i) {
 	    // of the length requested - if none, use standard length of 20
-    	for (int j = 0; j < len; ++j) 
-    	{
+    	for (int j = 0; j < len; ++j) {
     		std::cout << chars[gen()];
     	}
 		std::cout << std::endl;
@@ -107,7 +102,8 @@ void password_long(int& num, int len = 20)
  *
  * @param name - the name of the calling program
  */
-static void show_usage(std::string name) {
+static void show_usage(std::string name)
+{
 			std::cerr << "usage: " << name << "  [options] " << std::endl;
 			std::cerr << " l - create [n] long password of [n] (20 is default) characters for system useage." << std::endl;
 			std::cerr << " p - create [n] pronouncable passwords as cvccvccvcsnnn " << std::endl;
@@ -117,60 +113,57 @@ static void show_usage(std::string name) {
 			std::cerr << "                      n = digit" << std::endl;
 }
 
+static void show_version(std::string name)
+{
+    std::cerr << name << " version: " << "0.1" << std::endl << std::endl;
+}
+
 int main(int argc, char *argv[]) 
 {
    int length = 20;
    int number = 1;
    
-   if (argc < 2) 
-   {
+   if (argc < 2) {
       show_usage(argv[0]);
       return 1;
    }
 
    std::vector <std::string> commandline;
 
-   for (int i = 1; i < argc; ++i) 
-   {
+   for (int i = 1; i < argc; ++i) {
 	   std::string arg = argv[i];
 	   
-	   if ((arg == "-h" ) || (arg == "--help") || (arg == "-?")) 
-	   {
+	   if ((arg == "-h" ) || (arg == "--help") || (arg == "-?")) {
     	  show_usage(argv[0]);
 	   } 
-	   else if ((arg == "-l") || (arg == "--long")) 
-	   {
+       else if ((arg == "-v") || (arg == "--version")) {
+           show_version(argv[0]);
+       }
+	   else if ((arg == "-l") || (arg == "--long")) {
 		   // we want a set number of long passwords
-		   if (i + 1 < argc) 
-		   {
+		   if (i + 1 < argc) {
 			   std::string myString = argv[++i];
 		   	   number = atoi(myString.c_str());
 		   }
 		   // if yet another argument, we want them to be of set length
-		   if (i + 1 < argc) 
-		   {
+		   if (i + 1 < argc) {
 			   std::string myString = argv[++i];
 			   length = atoi(myString.c_str());
 			   password_long(number, length);
+		   } else {
+               password_long(number);
 		   }
-		   else
-		       password_long(number);
 
-	   }
-	   else if ((arg == "-p") || (arg == "--pronounce")) 
-	   {
-		   if (i + 1 < argc) 
-		   { 
+	   } else if ((arg == "-p") || (arg == "--pronounce")) {
+		   if (i + 1 < argc) { 
 			   std::string myString = argv[++i];
 			   number = atoi(myString.c_str());
 		   }
 		   password_pronounce(number);
-	   }
-	   else
-	   {
+	   } else {
 		   // we have a problem
 		   std::cerr << "Houston, we have a problem." << std::endl;
-		   std::cerr << "Why don't you try again with -h option. " << std::endl;
+		   std::cerr << "Why don't you try again with -h or --help option. " << std::endl;
 	   }
     }
 	return 0;
