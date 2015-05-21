@@ -1,13 +1,14 @@
+Information
+===========
+Create pronounable and hence rememberable passwords from the command prompt to a set pattern or create long passwords for secure computer systems.
+
 History
 =======
-In another life at another time, I used to have to give out passwords to students, who would forget them! 
-I remember giving a new password to the same student 3 times in the one day.
+In another life at another time, I used to have to give out passwords to students, who would forget them! I remember giving a new password to the same student 3 times in the one day.
 
-So, I wrote a simple gui pronouncable password generator in tcl/tk, where I could generate say 10, and let the student pick one.
+So, I wrote a simple gui based pronouncable password generator in tcl/tk, where I could generate say 10, and let the student pick one.
 
-As I am revising my c++ knowledge, I have taken the concept, and using the boost libraries,
-have recreated my creation in a cli compiled version for Gnu/Linux. No doubt it could be modded for 
-Mac and Windows, but someone else can do that if the need arises.
+As I am revising my c++ knowledge, I have taken the concept, and using the boost libraries, have recreated my creation in a command line interface compiled version for Gnu/Linux. No doubt it could be modded for Mac and Windows, but someone else can do that if the need arises.
 
 The compile instructions are in the source code, but it is simple:
 * you must have boost dev libraries installed.
@@ -16,8 +17,7 @@ The compile instructions are in the source code, but it is simple:
 
 It will create:
 * pronouncable passwords of an internal pattern from 1 to a number specified on the command line.
-* long passwords from 1 to number specified of a specified length (20 characters is the default). These are really good for computer
-systems that need secure passwords that are not accessed very often.
+* long passwords from 1 to number specified of a specified length (20 characters is the default). These are really good for computer systems that need secure passwords that are not accessed very often.
 
 I learnt a lot about processing commandline arguments in c++.
 
